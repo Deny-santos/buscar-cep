@@ -15,8 +15,7 @@ function App() {
     }
 
     try{
-      const response = await api.get(`${input}/json`)
-      console.log(response.data)
+      const response = await api.get(`${input.replace("-", "")}/json`)
       setCep(response.data)
       setInput("")
 
@@ -38,23 +37,23 @@ function App() {
             type="number" 
             placeholder="Digite Seu CEP" 
             value={input}
-            onChange={(e) => { setInput(e.target.value)}} />
+            onChange={(e) => setInput(e.target.value)} />
           <button className="bt" onClick={search}><FiSearch size={25} color="#000"/></button>
         
         </div>
 
-      {Object.keys(cep).length > 0 && (
-      //renderizaçao condicional
-      <main className="main">
-        <h2>CEP : {cep.cep}</h2>
-        <span>complemento : {cep.complemento}</span>
-        <span>ddd : {cep.ddd}</span>
-        <span> bairro : {cep.bairro}</span>
-        <span>cidade : {cep.localidade}</span>
-        <span>Estado: {cep.uf}</span>
-      </main>
+        {Object.keys(cep).length > 0 && (
+        //renderizaçao condicional
+        <main className="main">
+          <h2>CEP : {cep.cep}</h2>
+          <span>complemento : {cep.complemento}</span>
+          <span>ddd : {cep.ddd}</span>
+          <span> bairro : {cep.bairro}</span>
+          <span>cidade : {cep.localidade}</span>
+          <span>Estado: {cep.uf}</span>
+        </main>
 
-      )}
+        )}
 
       </div>
 
